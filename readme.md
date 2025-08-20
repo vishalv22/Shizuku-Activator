@@ -1,6 +1,6 @@
 ## Shizuku Activator
 
-codes:
+codes: ᏴᏢㅤᏙɪꜱʜᴀʟ
 
 ```bash 
 @echo off
