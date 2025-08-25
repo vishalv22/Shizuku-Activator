@@ -2,7 +2,7 @@
 
 codes:
 
-```bash 
+```bat
 @echo off
 title Shizuku Activation
 cd "replace-with-adb-folder-path"
@@ -45,6 +45,5 @@ goto menu
 
 :exit
 exit
-
 
 ```
