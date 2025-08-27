@@ -5,7 +5,7 @@ cd "C:\Users\sonam\Desktop\platform-tools"
 :menu
 cls
 echo =================================================================
-echo                  Shizuku Activation Tool By Vishal
+echo                  Shizuku Activation Tool By Vishal.
 echo =================================================================
 echo [1] Check connected Devices
 echo [2] Activate Shizuku
