@@ -1,5 +1,7 @@
 @echo off
 title Shizuku Activation
+
+:: set your adb folder path here-
 cd "C:\Users\sonam\Desktop\platform-tools"
 
 :menu
