@@ -1,66 +1,98 @@
 # Shizuku Activator
 
-Simple Windows batch file to activate **Shizuku** on an Android device using `adb`.
+A simple Windows tool to activate **Shizuku** on Android using `adb`.
 
-## Requirements
+## Download for Windows
 
-- A Windows PC
-- [Android Platform Tools](https://developer.android.com/tools/releases/platform-tools) installed
-- The **Shizuku** app installed
-- **Developer options** enabled
-- **USB debugging** enabled
-- A USB connection between phone and PC
+Download `ShizukuActivator.exe` from the latest GitHub release:
 
-## Setup
+[Download Latest Release](https://github.com/vishalv22/Shizuku-Activator/releases/latest)
 
-### 1. Install Platform Tools
+## Android Setup:
 
-Download and extract Android Platform Tools on your PC.
+On your Android phone:
 
-Example:
+1. Install the **Shizuku** app
+2. Enable **Developer options**
+3. Enable **USB debugging**
+4. Connect the phone to your Windows PC
+5. Allow the USB debugging prompt if Android asks for permission
+
+## Use The Windows App
+
+1. Open `ShizukuActivator.exe`
+2. Click **Detect**
+3. Select your phone from the device list
+4. Click **Activate Shizuku**
+
+If the app cannot find `adb`, click **Set ADB Folder** and select your `platform-tools` folder.
+
+The selected ADB folder is saved for the next time you open the app.
+
+## Download Platform Tools:
+
+If `adb` is not installed on your PC, download Android Platform Tools:
+
+[Android Platform Tools](https://developer.android.com/tools/releases/platform-tools)
+
+After downloading, extract the ZIP file. You can then select that extracted `platform-tools` folder inside the app.
+
+## Batch File Method
+
+You can also activate Shizuku with [ShizukuGo.bat](ShizukuGo.bat).
+
+Before using the batch file, open it and update the `platform-tools` path so it matches your PC.
+
+Then:
+
+1. Run `ShizukuGo.bat`
+2. Press `1` to check device detection
+3. Press `2` to activate Shizuku
+
+## Build From Source
+
+The Windows app source code is available in [windows/ShizukuActivator](windows/ShizukuActivator).
+
+Requirements:
+
+- Windows PC
+- [.NET SDK 8.0 or newer](https://dotnet.microsoft.com/download)
+- Android Platform Tools, only if `adb` is not already installed globally
+
+Steps:
+
+1. Clone the repo:
+
+```powershell
+git clone https://github.com/vishalv22/Shizuku-Activator.git
+```
+
+2. Open a terminal in the project folder:
+
+```powershell
+cd Shizuku-Activator
+```
+
+3. Check that the app builds correctly:
+
+```powershell
+dotnet build windows\ShizukuActivator\ShizukuActivator.csproj
+```
+
+4. Create your own release folder:
+
+```powershell
+dotnet publish windows\ShizukuActivator\ShizukuActivator.csproj -c Release -r win-x64 -p:PublishSingleFile=true -p:SelfContained=true -p:DebugSymbols=false -p:DebugType=None -o windows\dist
+```
+
+5. Open the generated app:
 
 ```text
-C:\Users\YourName\Desktop\platform-tools
+windows\dist\ShizukuActivator.exe
 ```
-
-### 2. Update the ADB Path in `ShizukuGo.bat`
-
-Open [ShizukuGo.bat](/c:/Users/sonam/Desktop/Tools/Shizuku-Activator/ShizukuGo.bat) and change this line:
-
-```bat
-cd "C:\Users\YourName\Desktop\platform-tools"
-```
-
-Replace it with the location of your own `platform-tools` folder.
-
-### 3. Prepare Your Android Device
-
-On your phone:
-
-1. Enable **Developer options**
-2. Enable **USB debugging**
-3. Install and open the **Shizuku** app at least once
-4. Connect the phone to the PC
-5. Allow the **USB debugging** authorization prompt if Android asks for it
-
-## Usage
-
-1. Double-click [ShizukuGo.bat](/c:/Users/sonam/Desktop/Tools/Shizuku-Activator/ShizukuGo.bat)
-2. Press `1` to check if your device is detected
-3. If the device appears, press `2` to activate Shizuku
-
-You will see:
-
-```text
-[1] Check connected Devices
-[2] Activate Shizuku
-[0] Exit
-```
-
-If the device shows as `unauthorized`, check your phone and accept the debugging prompt.
 
 ## Troubleshooting
 
-- Device not showing: reconnect the cable, enable **USB debugging**, and accept the phone authorization prompt
-- `adb` not working: verify the `platform-tools` path in [ShizukuGo.bat](/c:/Users/sonam/Desktop/Tools/Shizuku-Activator/ShizukuGo.bat) and make sure `adb.exe` exists there
-- Shizuku not starting: make sure the app is installed, opened once, and the device is detected before activating
+- If the device shows `unauthorized`, accept the USB debugging prompt on your phone
+- If no device appears, reconnect the cable and make sure **USB debugging** is enabled
+- If `adb` is not found, install Platform Tools or select the folder manually in the app
