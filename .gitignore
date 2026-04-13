@@ -1,0 +1,14 @@
+# Windows app build output
+windows/ShizukuActivator/bin/
+windows/ShizukuActivator/obj/
+windows/ShizukuActivator/*.user
+
+# Local publish output
+windows/dist/
+windows/dist-latest/
+
+# Local runtime state
+windows/**/adb-path.txt
+
+# Debug symbols
+*.pdb
