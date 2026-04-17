@@ -2,7 +2,7 @@
 title Shizuku Activation
 
 :: set your adb folder path here-
-cd "C:\Users\sonam\Desktop\platform-tools"
+cd "C:\Users\YourName\Desktop\platform-tools"
 
 :menu
 cls
