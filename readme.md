@@ -8,9 +8,11 @@ Download `ShizukuActivator.exe` from the latest GitHub release:
 
 [Download Latest Release](https://github.com/vishalv22/Shizuku-Activator/releases/latest)
 
-## Android Setup:
+Download Android Platform Tools:
 
-On your Android phone:
+[Android Platform Tools](https://developer.android.com/tools/releases/platform-tools)
+
+## Android Setup:
 
 1. Install the **Shizuku** app
 2. Enable **Developer options**
@@ -29,19 +31,11 @@ If the app cannot find `adb`, click **Set ADB Folder** and select your `platform
 
 The selected ADB folder is saved for the next time you open the app.
 
-## Download Platform Tools:
 
-If `adb` is not installed on your PC, download Android Platform Tools:
-
-[Android Platform Tools](https://developer.android.com/tools/releases/platform-tools)
-
-After downloading, extract the ZIP file. You can then select that extracted `platform-tools` folder inside the app.
 
 ## Batch File Method
 
-You can also activate Shizuku with [ShizukuGo.bat](ShizukuGo.bat).
-
-Before using the batch file, open it and update the `platform-tools` path so it matches your PC.
+You can also activate Shizuku with [ShizukuGo.bat](ShizukuGo.bat). Place `ShizukuGo.bat` directly inside your `platform-tools` folder. It automatically finds `adb.exe`.
 
 Then:
 
@@ -51,45 +45,44 @@ Then:
 
 ## Build From Source
 
-The Windows app source code is available in [windows/ShizukuActivator](windows/ShizukuActivator).
+You can create a portable `.exe` on your pc or laptop:
 
-Requirements:
+### 1. Install Git
 
-- Windows PC
-- [.NET SDK 8.0 or newer](https://dotnet.microsoft.com/download)
-- Android Platform Tools, only if `adb` is not already installed globally
+Install [Git for Windows](https://git-scm.com/download/win), so you can download the source code.
 
-Steps:
+You will need [Android Platform Tools](https://developer.android.com/tools/releases/platform-tools) later to use the app with your phone.
 
-1. Clone the repo:
+### 2. Download the project
+
+Open PowerShell and run:
 
 ```powershell
 git clone https://github.com/vishalv22/Shizuku-Activator.git
-```
-
-2. Open a terminal in the project folder:
-
-```powershell
 cd Shizuku-Activator
 ```
 
-3. Check that the app builds correctly:
+### 3. Install the build requirements and create the portable executable
+
+Run the included PowerShell script. It installs the .NET 8 SDK using `winget` if it is missing, then creates the portable executable:
 
 ```powershell
-dotnet build windows\ShizukuActivator\ShizukuActivator.csproj
+.\build-portable.ps1
 ```
 
-4. Create your own release folder:
+If PowerShell blocks the script, run:
 
 ```powershell
-dotnet publish windows\ShizukuActivator\ShizukuActivator.csproj -c Release -r win-x64 -p:PublishSingleFile=true -p:SelfContained=true -p:DebugSymbols=false -p:DebugType=None -o windows\dist
+powershell -ExecutionPolicy Bypass -File .\build-portable.ps1
 ```
 
-5. Open the generated app:
+Your executable will be here:
 
 ```text
 windows\dist\ShizukuActivator.exe
 ```
+
+You can run the executable directly from `windows\dist`, or move it to your existing `platform-tools` folder and run it there.
 
 ## Troubleshooting
 

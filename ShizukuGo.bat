@@ -1,8 +1,16 @@
 @echo off
 title Shizuku Activation
 
-:: set your adb folder path here-
-cd "C:\Users\YourName\Desktop\platform-tools"
+set "ADB=%~dp0adb.exe"
+if not exist "%ADB%" (
+	echo adb.exe was not found in this folder:
+	echo %~dp0
+	echo.
+	echo Put ShizukuGo.bat inside the platform-tools folder.
+	pause
+	exit /b 1
+)
+cd /d "%~dp0"
 
 :menu
 cls
@@ -26,7 +34,7 @@ goto menu
 
 :devices
 echo.
-adb devices
+"%ADB%" devices
 echo.
 echo Press ENTER to return to menu...
 set /p dummy=
@@ -34,7 +42,7 @@ goto menu
 
 :shizuku
 echo.
-adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/start.sh
+"%ADB%" shell sh /sdcard/Android/data/moe.shizuku.privileged.api/start.sh
 echo.
 echo Press ENTER to return to menu...
 set /p dummy=
